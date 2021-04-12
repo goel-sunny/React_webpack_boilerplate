@@ -9,16 +9,16 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"]
-      },
-      {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource"
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource"
+      },
+      {
+        test: /\.s[c]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /\.(ts|js)x?$/,
@@ -46,12 +46,12 @@ const config = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "src/index.html"
+      template: "./src/index.html"
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
       eslint: {
-        files: "./src/**/*"
+        files: "./src/**/*.{ts,tsx,js,jsx}"
       }
     })
   ],
